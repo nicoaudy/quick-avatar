@@ -13,7 +13,7 @@
                         {{ method_field('PATCH') }}
 
                         <div class="form-group">
-                            <avatar-upload></avatar-upload>
+                            <avatar-upload endpoint="" send-as="" current-avatar="{{ Auth::user()->avatarPath() }}"></avatar-upload>
                         </div>
                         <div class="form-group">
                             <label for="name">Name</label>

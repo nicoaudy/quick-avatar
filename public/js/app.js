@@ -42060,6 +42060,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['currentAvatar'],
+    data: function data() {
+        return {
+            errors: [],
+            avatar: {
+                id: null,
+                path: this.currentAvatar
+            }
+        };
+    },
+
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_upload_js__["a" /* default */]],
     methods: {
         fileChange: function fileChange(e) {

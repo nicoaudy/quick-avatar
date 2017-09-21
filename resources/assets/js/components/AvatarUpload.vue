@@ -20,6 +20,18 @@
     import upload from '../mixins/upload.js'
 
     export default {
+        props: [
+            'currentAvatar'
+        ],
+        data() {
+            return {
+                errors: [],
+                avatar: {
+                    id: null,
+                    path: this.currentAvatar
+                }
+            }
+        },
         mixins: [
             upload
         ],
