@@ -42056,7 +42056,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+    methods: {
+        fileChange: function fileChange(e) {
+            console.log(e);
+        }
+    }
+});
 
 /***/ }),
 /* 39 */
@@ -42066,7 +42072,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "form-group" }, [
+      _c("label", { attrs: { for: "avatar" } }, [_vm._v("Avatar")]),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "file" },
+        on: { onchange: _vm.fileChange }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "help-block" }, [
+        _vm._v("\n            Help\n        ")
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -42074,21 +42095,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "avatar" } }, [_vm._v("Avatar")]),
-        _vm._v(" "),
-        _c("input", { attrs: { type: "file" } }),
-        _vm._v(" "),
-        _c("div", { staticClass: "help-block" }, [
-          _vm._v("\n            Help\n        ")
-        ])
-      ]),
+      _c("input", { attrs: { type: "hidden", name: "avatar_id" } }),
       _vm._v(" "),
-      _c("div", [
-        _c("input", { attrs: { type: "hidden", name: "avatar_id" } }),
-        _vm._v(" "),
-        _c("img", { staticClass: "avatar", attrs: { alt: "Current avatar" } })
-      ])
+      _c("img", { staticClass: "avatar", attrs: { alt: "Current avatar" } })
     ])
   }
 ]

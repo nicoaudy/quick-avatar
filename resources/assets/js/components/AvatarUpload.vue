@@ -2,7 +2,7 @@
     <div>
         <div class="form-group">
             <label for="avatar">Avatar</label>
-            <input type="file">
+            <input type="file" @onchange="fileChange">
 
             <div class="help-block">
                 Help
@@ -18,5 +18,10 @@
 
 <script>
     export default {
+        methods: {
+            fileChange (e) {
+                console.log(e)
+            }
+        }
     }
 </script>
