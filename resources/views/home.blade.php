@@ -13,7 +13,7 @@
                         {{ method_field('PATCH') }}
 
                         <div class="form-group">
-                            avatar
+                            <avatar-upload></avatar-upload>
                         </div>
                         <div class="form-group">
                             <label for="name">Name</label>
