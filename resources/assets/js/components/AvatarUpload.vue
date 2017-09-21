@@ -2,7 +2,7 @@
     <div>
         <div class="form-group">
             <label for="avatar">Avatar</label>
-            <input type="file" @onchange="fileChange">
+            <input type="file" @change="fileChange">
 
             <div class="help-block">
                 Help
@@ -17,10 +17,15 @@
 </template>
 
 <script>
+    import upload from '../mixins/upload.js'
+
     export default {
+        mixins: [
+            upload
+        ],
         methods: {
             fileChange (e) {
-                console.log(e)
+                this.upload(e)
             }
         }
     }

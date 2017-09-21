@@ -42037,6 +42037,7 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_upload_js__ = __webpack_require__(50);
 //
 //
 //
@@ -42056,10 +42057,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_upload_js__["a" /* default */]],
     methods: {
         fileChange: function fileChange(e) {
-            console.log(e);
+            this.upload(e);
         }
     }
 });
@@ -42076,10 +42080,7 @@ var render = function() {
     _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "avatar" } }, [_vm._v("Avatar")]),
       _vm._v(" "),
-      _c("input", {
-        attrs: { type: "file" },
-        on: { onchange: _vm.fileChange }
-      }),
+      _c("input", { attrs: { type: "file" }, on: { change: _vm.fileChange } }),
       _vm._v(" "),
       _c("div", { staticClass: "help-block" }, [
         _vm._v("\n            Help\n        ")
@@ -42115,6 +42116,43 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: {
+        endpoint: {
+            type: String
+        },
+        sendAs: {
+            type: String,
+            default: 'file'
+        }
+    },
+    data: function data() {
+        return {
+            uploading: true
+        };
+    },
+
+    methods: {
+        upload: function upload(e) {
+            console.log(e);
+        }
+    }
+});
 
 /***/ })
 /******/ ]);
