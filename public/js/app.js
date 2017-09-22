@@ -773,7 +773,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(9);
-module.exports = __webpack_require__(40);
+module.exports = __webpack_require__(41);
 
 
 /***/ }),
@@ -41897,7 +41897,7 @@ var normalizeComponent = __webpack_require__(37)
 /* script */
 var __vue_script__ = __webpack_require__(38)
 /* template */
-var __vue_template__ = __webpack_require__(39)
+var __vue_template__ = __webpack_require__(40)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -42037,7 +42037,7 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_upload_js__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_upload_js__ = __webpack_require__(39);
 //
 //
 //
@@ -42081,6 +42081,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 39 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: {
+        endpoint: {
+            type: String
+        },
+        sendAs: {
+            type: String,
+            default: 'file'
+        }
+    },
+    data: function data() {
+        return {
+            uploading: true
+        };
+    },
+
+    methods: {
+        upload: function upload(e) {
+            var _this = this;
+
+            this.uploading = true;
+
+            return axios.post(this.endpoint, this.packageUploads(e)).then(function (response) {
+                _this.uploading = false;
+
+                return Promise.resolve(response);
+            }).catch(function (error) {
+                _this.uploading = false;
+
+                return Promise.reject(error);
+            });
+        },
+        packageUploads: function packageUploads(e) {
+            var fileData = new FormData();
+            fileData.append(this.sendAs, e.target.files[0]);
+            return fileData;
+        }
+    }
+});
+
+/***/ }),
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -42123,47 +42168,10 @@ if (false) {
 }
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-    props: {
-        endpoint: {
-            type: String
-        },
-        sendAs: {
-            type: String,
-            default: 'file'
-        }
-    },
-    data: function data() {
-        return {
-            uploading: true
-        };
-    },
-
-    methods: {
-        upload: function upload(e) {
-            console.log(e);
-        }
-    }
-});
 
 /***/ })
 /******/ ]);
