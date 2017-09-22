@@ -6,6 +6,7 @@ use App\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManager;
+use App\Http\Requests\AvatarUploadRequest;
 
 class AvatarController extends Controller
 {
@@ -16,12 +17,8 @@ class AvatarController extends Controller
         $this->imageManager = $imageManager;
     }
 
-    public function store(Request $request)
+    public function store(AvatarUploadRequest $request)
     {
-        $this->validate($request, [
-            'image' => 'required|image|max:1024'
-        ]);
-
         $processedImage = $this->imageManager->make($request->file('image')
             ->getPathName())
             ->fit(100, 100, function ($c) {
