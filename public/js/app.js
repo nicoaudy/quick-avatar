@@ -42075,11 +42075,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_upload_js__["a" /* default */]],
     methods: {
         fileChange: function fileChange(e) {
-            var _this = this;
-
-            this.upload(e).then(function (response) {
-                _this.avatar = response.data.data;
-            }).catch(function (error) {});
+            this.upload(e).then(this.handleSuccess, this.handleError);
+        },
+        handleSuccess: function handleSuccess(res) {
+            this.avatar = res.data.data;
+        },
+        handleError: function handleError(err) {
+            if (err.response.status === 422) {
+                this.errors = err.response.data;
+                return;
+            }
+            this.errors = 'Something went wrong. Try again.';
         }
     }
 });
@@ -42138,17 +42144,37 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "avatar" } }, [_vm._v("Avatar")]),
-      _vm._v(" "),
-      _vm.uploading ? _c("div", [_vm._v("Processing")]) : _vm._e(),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "file" }, on: { change: _vm.fileChange } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "help-block" }, [
-        _vm._v("\n            Help\n        ")
-      ])
-    ]),
+    _c(
+      "div",
+      {
+        staticClass: "form-group",
+        class: { "has-error": _vm.errors[this.sendAs] }
+      },
+      [
+        _c(
+          "label",
+          { staticClass: "control-label", attrs: { for: _vm.sendAs } },
+          [_vm._v("Avatar")]
+        ),
+        _vm._v(" "),
+        _vm.uploading
+          ? _c("div", [_vm._v("Processing")])
+          : _c("input", {
+              attrs: { type: "file", name: _vm.sendAs },
+              on: { change: _vm.fileChange }
+            }),
+        _vm._v(" "),
+        _vm.errors[this.sendAs]
+          ? _c("div", { staticClass: "help-block" }, [
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.errors[this.sendAs][0]) +
+                  "\n        "
+              )
+            ])
+          : _vm._e()
+      ]
+    ),
     _vm._v(" "),
     _vm.avatar.path
       ? _c("div", [

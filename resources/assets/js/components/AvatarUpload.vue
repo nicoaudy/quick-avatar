@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="form-group">
-            <label for="avatar">Avatar</label>
+        <div class="form-group" :class="{ 'has-error': errors[this.sendAs] }">
+            <label :for="sendAs" class="control-label">Avatar</label>
             <div v-if="uploading">Processing</div>
-            <input type="file" @change="fileChange">
+            <input v-else type="file" @change="fileChange" :name="sendAs">
 
-            <div class="help-block">
-                Help
+            <div class="help-block" v-if="errors[this.sendAs]">
+                {{ errors[this.sendAs][0] }}
             </div>
         </div>
 
@@ -38,11 +38,17 @@
         ],
         methods: {
             fileChange (e) {
-                this.upload(e).then(response => {
-                    this.avatar = response.data.data
-                }).catch((error) => {
-
-                })
+                this.upload(e).then(this.handleSuccess, this.handleError)
+            },
+            handleSuccess (res) {
+                this.avatar = res.data.data
+            },
+            handleError (err) {
+                if (err.response.status === 422) {
+                    this.errors = err.response.data
+                    return
+                }
+                this.errors = 'Something went wrong. Try again.'
             }
         }
     }
