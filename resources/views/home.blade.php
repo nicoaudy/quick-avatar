@@ -8,7 +8,7 @@
                 <div class="panel-heading">Profile</div>
 
                 <div class="panel-body">
-                    <form action="" method="POST">
+                    <form action="{{ route('account.update') }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
 
