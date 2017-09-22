@@ -27,9 +27,10 @@ class AvatarController extends Controller
             ->encode('png')
             ->save(config('image.path.absolute') . $path = '/' . uniqid(true) . '.png');
 
-        $image = Image::create([
-            'path' => $path
-        ]);
+        $image = new Image;
+        $image->path = $path;
+        $image->user()->associate($request->user());
+        $image->save();
 
         return response([
             'data' => [
