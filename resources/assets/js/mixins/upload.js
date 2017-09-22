@@ -10,7 +10,7 @@ export default {
     },
     data() {
         return {
-            uploading: true
+            uploading: false
         }
     },
     methods: {

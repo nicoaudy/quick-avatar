@@ -2,6 +2,7 @@
     <div>
         <div class="form-group">
             <label for="avatar">Avatar</label>
+            <div v-if="uploading">Processing</div>
             <input type="file" @change="fileChange">
 
             <div class="help-block">
@@ -9,9 +10,9 @@
             </div>
         </div>
 
-        <div>
-            <input type="hidden" name="avatar_id">
-            <img class="avatar" alt="Current avatar">
+        <div v-if="avatar.path">
+            <input type="hidden" name="avatar_id" :value="avatar.id">
+            <img class="avatar" :src="avatar.path" alt="Current avatar">
         </div>
     </div>
 </template>
@@ -37,7 +38,11 @@
         ],
         methods: {
             fileChange (e) {
-                this.upload(e)
+                this.upload(e).then(response => {
+                    this.avatar = response.data.data
+                }).catch((error) => {
+
+                })
             }
         }
     }

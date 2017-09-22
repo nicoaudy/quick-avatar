@@ -42056,6 +42056,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -42074,7 +42075,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_upload_js__["a" /* default */]],
     methods: {
         fileChange: function fileChange(e) {
-            this.upload(e);
+            var _this = this;
+
+            this.upload(e).then(function (response) {
+                _this.avatar = response.data.data;
+            }).catch(function (error) {});
         }
     }
 });
@@ -42096,7 +42101,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            uploading: true
+            uploading: false
         };
     },
 
@@ -42136,6 +42141,8 @@ var render = function() {
     _c("div", { staticClass: "form-group" }, [
       _c("label", { attrs: { for: "avatar" } }, [_vm._v("Avatar")]),
       _vm._v(" "),
+      _vm.uploading ? _c("div", [_vm._v("Processing")]) : _vm._e(),
+      _vm._v(" "),
       _c("input", { attrs: { type: "file" }, on: { change: _vm.fileChange } }),
       _vm._v(" "),
       _c("div", { staticClass: "help-block" }, [
@@ -42143,21 +42150,22 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _vm.avatar.path
+      ? _c("div", [
+          _c("input", {
+            attrs: { type: "hidden", name: "avatar_id" },
+            domProps: { value: _vm.avatar.id }
+          }),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "avatar",
+            attrs: { src: _vm.avatar.path, alt: "Current avatar" }
+          })
+        ])
+      : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("input", { attrs: { type: "hidden", name: "avatar_id" } }),
-      _vm._v(" "),
-      _c("img", { staticClass: "avatar", attrs: { alt: "Current avatar" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
